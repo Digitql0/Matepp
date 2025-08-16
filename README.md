@@ -13,7 +13,7 @@ It aims to provide:
 
 ## 🚀 Getting Started
 ```bash
-git clone https://github.com/yourusername/matepp.git
+git clone https://github.com/Digitql0/matepp.git
 cd matepp
 mkdir build && cd build
 cmake ..
