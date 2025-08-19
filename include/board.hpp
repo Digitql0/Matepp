@@ -20,15 +20,18 @@
 
 #define TURN 1
 
-#include <iostream>
+#include <string>
 #include <vector>
+#include <iostream>
 
 class game {
 public:
   game();
   void readBoard(bool id);
   void makeMove(std::string a, std::string b);
+  bool isMoveLegal(int fr, int fc, int sr, int sc, bool& isEnpassant);
   void changeColor();
+  void applyMove(int firstRow, int firstColumn, int secondRow, int secondColumn);
   void promote(std::string piece);
   void showMoves(std::string cell);
   bool isWhite;
@@ -38,22 +41,23 @@ private:
   std::vector<std::vector<int>> board;
   std::vector<std::pair<int, int>> moves;
 
-  std::pair<int, int> selected_cell;
-  bool cell_selected;
+  std::pair<int, int> selectedCell;
+  bool cellSelected;
 
   int whiteDirection;
 
-  std::pair<int, int> pending_promotion_cell;
-  bool pending_promotion;
-  std::vector<std::pair<int, int>> getPossibleMoves(int fr, int fc, int cell,
-                                                    int whiteDirection);
+  std::pair<int, int> pendingPromotionCell;
+  bool pendingPromotion;
+  std::vector<std::pair<int, int>> getPossibleMoves(int fr, int fc, int cell);
   void getRowColumn(std::string cell, int &row, int &column, bool isWhite);
-  void getPieceChar(int row, int column, char &pc);
+  char getPieceChar(int pieceType);
+  int getPieceType(char pieceChar);
   void checkCheckmate();
 };
 
-extern std::vector<int> pawn_row;
-extern std::vector<int> king_row;
-extern std::vector<int> empty_row;
+extern std::vector<int> pawnRow;
+extern std::vector<int> kingRow;
+extern std::vector<int> emptyRow;
+extern std::vector<std::pair<int, char>> pieceCharPairs;
 
 #endif
